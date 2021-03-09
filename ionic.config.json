@@ -1,0 +1,7 @@
+{
+  "name": "psi-tcc-estacio-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
