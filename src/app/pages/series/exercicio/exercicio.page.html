@@ -1,0 +1,17 @@
+<ion-header>
+  <app-header title="Exercício"></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <img [src]="user.avatar"/>
+
+    <ul>
+      <li *ngFor="let item of profile">
+        <ion-icon [name]="item.icon"></ion-icon>
+        <span>{{ item.text }}</span>
+      </li>
+    </ul>
+  </div>
+</ion-content>
+
