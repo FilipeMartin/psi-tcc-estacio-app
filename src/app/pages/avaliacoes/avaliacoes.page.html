@@ -1,0 +1,17 @@
+<ion-header>
+  <app-header title="Avaliações"></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="avaliacoes">
+    <ion-item *ngFor="let avaliacao of avaliacoes" [routerLink]="['/avaliacoes','avaliacao', convertJson(avaliacao)]">
+      <div class="container">
+        <img src="assets/avaliacao.png">
+        <div class="info">
+          <span class="title">Avaliacão do Aluno</span>
+          <span class="description">{{ avaliacao.dataAvaliacao | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SeriesPage
   },
   {
-    path: 'exercicio/:id',
+    path: 'exercicio/:exercicio',
     loadChildren: () => import('./exercicio/exercicio.module').then( m => m.ExercicioPageModule)
   }
 ];

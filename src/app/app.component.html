@@ -1,12 +1,12 @@
 <ion-app>
-  <ion-menu menuId="main-menu" contentId="main">
+  <ion-menu menuId="main-menu" contentId="main" *ngIf="showMenu">
     <ion-content>
 
       <div class="menu-header">
-        <img [src]="user?.avatar"/>
+        <img src="assets/avatar.png"/>
         <div class="info-user">
-          <span>{{ user?.name }}</span>
-          <span>{{ user?.email }}</span>
+          <span>{{ aluno?.nomeCompleto }}</span>
+          <span>{{ aluno?.email }}</span>
         </div>
       </div>
 

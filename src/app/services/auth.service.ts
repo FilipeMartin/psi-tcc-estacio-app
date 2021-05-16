@@ -1,24 +1,26 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from '../interfaces/user';
+import { Aluno } from '../interfaces/aluno';
+import { Plugins } from '@capacitor/core';
 
-const storageKey = "loggedUser";
+const { App } = Plugins;
+const storageKey = "alunoLogado";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-  private loginUser: User;
-  public actionLogin: EventEmitter<User> = new EventEmitter<User>();
+  private aluno: Aluno;
+  public actionLogin: EventEmitter<Aluno> = new EventEmitter<Aluno>();
 
   constructor(private http: HttpClient, protected router: Router) {
     try {
-      const loggedUser = localStorage.getItem(storageKey);
+      const alunoLogado = localStorage.getItem(storageKey);
 
-      if(loggedUser) {
-        this.loginUser = JSON.parse(loggedUser);
+      if(alunoLogado) {
+        this.aluno = JSON.parse(alunoLogado);
       }
     } catch (e) {
       console.error(e.message);
@@ -26,48 +28,35 @@ export class AuthService {
   }
 
   get isLoggedIn() {
-    return this.loginUser != null;
+    return this.aluno != null;
   }
 
-  getUser() {
-    return (this.loginUser) || null;
+  getAluno() {
+    return (this.aluno) || null;
   }
 
-  login(login: string, password: string) {
+  async login(login: string, senha: string) {
     let success = false;
 
-    if(login == "filipe" && password == "123") {
-      const user: User = {
-        id: 1,
-        name: "Filipe Martin Gomes de Loiola",
-        email: "filipe_loiola@hotmail.com",
-        phone: "(21) 99639-6999",
-        age: "27",
-        avatar: "assets/avatar.png"
-      }
-
-      this.loginUser = user;
-      localStorage.setItem(storageKey, JSON.stringify(user));
-      this.actionLogin.emit(user);
-      success = true;
-    }
-
-    // await this.http.post<any>(`login`, {login, password}).toPromise()
-    //   .then((user: User) => {
-    //     this.loginUser = user;
-    //     localStorage.setItem(storageKey, JSON.stringify(user));
-    //     this.actionLogin.emit(user);
-    //     success = true;
-    //   });
+    await this.http.post<Aluno>('login', {login, senha}).toPromise()
+      .then((aluno: Aluno) => {
+        this.aluno = aluno;
+        localStorage.setItem(storageKey, JSON.stringify(aluno));
+        this.actionLogin.emit(aluno);
+        success = true;
+      })
+      .catch(e => {
+        console.log(e.message);
+      });
 
     return success;
   }
 
   async logout() {
-    this.loginUser = null;
+    this.aluno = null;
     localStorage.removeItem(storageKey);
     sessionStorage.removeItem(storageKey);
-    return this.router.navigate(['/login']);
+    await App.exitApp();
   }
 
 }

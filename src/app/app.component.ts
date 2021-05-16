@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { User } from './interfaces/user';
+import { Aluno } from './interfaces/aluno';
 import { AuthService } from './services/auth.service';
 
 
@@ -17,20 +17,26 @@ interface MenuItem {
 })
 export class AppComponent implements OnDestroy {
 
-  user: User;
+  aluno: Aluno;
   loginSubscribe: Subscription;
+  showMenu: boolean = false;
 
   menu: Array<MenuItem> = [
     {text: 'Início', icon: 'arrow-redo-outline', path: '/inicio'},
-    {text: 'Suas Séries', icon: 'barbell-outline', path: '/series'},
-    {text: 'Perfil', icon: 'person-circle-outline', path: '/perfil'},
+    {text: 'Exercícios', icon: 'barbell-outline', path: '/series'},
+    {text: 'Avaliações', icon: 'document-text-outline', path: '/avaliacoes'},
   ];
 
   constructor(private authService: AuthService) {
-    this.user = this.authService.getUser();
+    this.aluno = this.authService.getAluno();
 
-    this.loginSubscribe = this.authService.actionLogin.subscribe((user: User) => {
-      this.user = user;
+    if(this.aluno) {
+      this.showMenu = true;
+    }
+
+    this.loginSubscribe = this.authService.actionLogin.subscribe((aluno: Aluno) => {
+      this.aluno = aluno;
+      this.showMenu = true;
     });
   }
 

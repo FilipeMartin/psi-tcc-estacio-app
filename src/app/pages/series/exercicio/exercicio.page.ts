@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from 'src/app/interfaces/exercise';
-import { User } from 'src/app/interfaces/user';
-import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { Exercicio } from 'src/app/interfaces/exercicio';
+import { environment } from 'src/environments/environment.prod';
 
-
-interface Profile {
+interface List {
   text: string;
   icon: string;
 }
@@ -16,25 +15,16 @@ interface Profile {
 })
 export class ExercicioPage implements OnInit {
 
-  exercise: Exercise = {
-    id: 1,
-    name: "Desenvolvimento com barra",
-    repetition: 10,
-    repetitionQtd: 3,
-    url: "assets/halteres.png"
-  };
+  exercicio: Exercicio;
+  list: Array<List>;
 
-  user: User;
-  profile: Array<Profile>;
+  constructor(private route: ActivatedRoute) {
+    this.exercicio = JSON.parse(this.route.snapshot.params['exercicio']);
+    this.exercicio.caminhoVideo = environment.base_url + this.exercicio.caminhoVideo;
 
-  constructor(private authService: AuthService) {
-    this.user = this.authService.getUser();
-
-    this.profile = [
-      {text: this.user.name, icon: "person-circle-outline"},
-      {text: this.user.email, icon: "mail-outline"},
-      {text: this.user.phone, icon: "call-outline"},
-      {text: `${this.user.age} anos`, icon: "hourglass-outline"},
+    this.list = [
+      {text: this.exercicio.nome, icon: "barbell-outline"},
+      {text: `${this.exercicio.quantidadeRepeticoes} X ${this.exercicio.quantidadeSeries} Reps`, icon: "accessibility-outline"}
     ];
   }
 

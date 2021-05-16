@@ -1,15 +1,15 @@
 <ion-header>
-  <app-header title="Suas Séries"></app-header>
+  <app-header title="Exercícios"></app-header>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let exercise of exercises" [routerLink]="['/series','exercicio', exercise.id]">
+  <ion-list *ngIf="cargaExercicio">
+    <ion-item *ngFor="let exercicio of cargaExercicio.exercicios" [routerLink]="['/series','exercicio', convertJson(exercicio)]">
       <div class="container">
-        <img [src]="exercise.url">
+        <img src="assets/halteres.png">
         <div class="info">
-          <span class="title">{{ exercise.name }}</span>
-          <span class="description">{{ exercise.repetitionQtd }} X {{ exercise.repetition }} Reps.</span>
+          <span class="title">{{ exercicio.nome }}</span>
+          <span class="description">{{ exercicio.quantidadeRepeticoes }} X {{ exercicio.quantidadeSeries }} Reps.</span>
         </div>
       </div>
     </ion-item>

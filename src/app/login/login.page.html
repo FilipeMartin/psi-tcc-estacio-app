@@ -3,14 +3,15 @@
     <ion-row>
       <ion-col>
         <form [formGroup]="form" (ngSubmit)="submit()">
-          <img src="assets/logo.png" width="230">
+          <h1>Academia App</h1>
+          <img src="assets/logo.png" width="180">
           <ion-item class="ion-no-padding">
             <ion-label position="floating">Login</ion-label>
             <ion-input type="text" formControlName="login"></ion-input>
           </ion-item>
           <ion-item class="ion-no-padding">
             <ion-label position="floating">Senha</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
+            <ion-input type="password" formControlName="senha"></ion-input>
           </ion-item>
           <ion-button type="submit" color="primary" [disabled]="form.invalid">Entrar</ion-button>
         </form>

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { CargaExercicio, Exercicio } from 'src/app/interfaces/exercicio';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-series',
-  templateUrl: './series.page.html',
-  styleUrls: ['./series.page.scss'],
+  selector: 'app-avaliacoes',
+  templateUrl: './avaliacoes.page.html',
+  styleUrls: ['./avaliacoes.page.scss'],
 })
-export class SeriesPage implements OnInit {
+export class AvaliacoesPage implements OnInit {
 
-  cargaExercicio: CargaExercicio;
+  avaliacoes: Array<Avaliacao>;
   load: HTMLIonLoadingElement;
 
   constructor(
@@ -21,7 +21,7 @@ export class SeriesPage implements OnInit {
 
   async ngOnInit() {
     await this.loading();
-    this.cargaExercicio = await this.service.getCargaExercicio();
+    this.avaliacoes = await this.service.getAvaliacoes();
     this.load.dismiss();
   }
 
@@ -33,8 +33,8 @@ export class SeriesPage implements OnInit {
     await this.load.present();
   }
 
-  convertJson(exercicio: Exercicio) {
-    return JSON.stringify(exercicio);
+  convertJson(avaliacao: Avaliacao) {
+    return JSON.stringify(avaliacao);
   }
 
 }

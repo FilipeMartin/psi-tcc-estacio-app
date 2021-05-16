@@ -27,10 +27,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/series/series.module').then( m => m.SeriesPageModule)
   },
   {
-    path: 'perfil',
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    path: 'avaliacoes',
+    loadChildren: () => import('./pages/avaliacoes/avaliacoes.module').then( m => m.AvaliacoesPageModule)
   },
 ];
 

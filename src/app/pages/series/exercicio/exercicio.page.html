@@ -1,13 +1,13 @@
 <ion-header>
-  <app-header title="Exercício"></app-header>
+  <app-header [title]="'Exercício - '+exercicio.nome"></app-header>
 </ion-header>
 
 <ion-content>
   <div class="container">
-    <img [src]="user.avatar"/>
+    <img [src]="exercicio.caminhoVideo"/>
 
     <ul>
-      <li *ngFor="let item of profile">
+      <li *ngFor="let item of list">
         <ion-icon [name]="item.icon"></ion-icon>
         <span>{{ item.text }}</span>
       </li>

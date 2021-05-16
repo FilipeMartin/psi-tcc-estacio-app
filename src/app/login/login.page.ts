@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       login: ['', Validators.required],
-      password: ['', Validators.required]
+      senha: ['', Validators.required]
     });
   }
 
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
     if(this.form.valid) {
       await this.loading();
       const auth = this.form.value;
-      const result = this.authService.login(auth.login, auth.password);
+      const result = await this.authService.login(auth.login, auth.senha);
 
       if(result) {
         this.form.reset();
