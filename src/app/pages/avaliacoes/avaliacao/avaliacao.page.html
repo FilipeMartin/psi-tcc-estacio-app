@@ -1,7 +1,12 @@
 <ion-header>
-  <app-header title="Avaliação"></app-header>
+  <app-header title="Avaliação - {{ avaliacao.dataAvaliacao | date: 'dd/MM/yyyy' }}"></app-header>
 </ion-header>
 
 <ion-content>
-  {{ avaliacao | json }}
+  <ul>
+    <li *ngFor="let item of data">
+      <span class="title">{{ item.title }}: </span><br/>
+      <span class="value">{{ item.value }}</span>
+    </li>
+  </ul>
 </ion-content>

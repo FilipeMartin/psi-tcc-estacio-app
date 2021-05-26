@@ -1,0 +1,18 @@
+ul {
+  margin: 10px;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    margin-bottom: 8px;
+
+    .title {
+      color: #3f9ce8;
+    }
+
+    .value {
+      color: #707070;
+    }
+  }
+}
+
