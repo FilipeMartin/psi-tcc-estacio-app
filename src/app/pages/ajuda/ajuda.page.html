@@ -1,0 +1,28 @@
+<ion-header>
+  <app-header title="Consultar Professor"></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <img src="assets/avatar.png"/>
+
+    <ul>
+      <li>
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span>{{ professor.nome }}</span>
+      </li>
+      <li>
+        <ion-icon name="mail-outline"></ion-icon>
+        <span>{{ professor.email }}</span>
+      </li>
+      <li>
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ professor.telefone }}</span>
+      </li>
+    </ul>
+    <ion-button color="primary" (click)="openUrl()">
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <span>Consultar Professor</span>
+    </ion-button>
+  </div>
+</ion-content>

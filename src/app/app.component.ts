@@ -25,6 +25,8 @@ export class AppComponent implements OnDestroy {
     {text: 'Início', icon: 'arrow-redo-outline', path: '/inicio'},
     {text: 'Exercícios', icon: 'barbell-outline', path: '/series'},
     {text: 'Avaliações', icon: 'document-text-outline', path: '/avaliacoes'},
+    {text: 'Unidades', icon: 'location-outline', path: '/unidades'},
+    {text: 'Consultar Professor', icon: 'logo-whatsapp', path: '/ajuda'},
   ];
 
   constructor(private authService: AuthService) {

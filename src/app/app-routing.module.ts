@@ -29,7 +29,15 @@ const routes: Routes = [
   {
     path: 'avaliacoes',
     loadChildren: () => import('./pages/avaliacoes/avaliacoes.module').then( m => m.AvaliacoesPageModule)
+  },  {
+    path: 'unidades',
+    loadChildren: () => import('./pages/unidades/unidades.module').then( m => m.UnidadesPageModule)
   },
+  {
+    path: 'ajuda',
+    loadChildren: () => import('./pages/ajuda/ajuda.module').then( m => m.AjudaPageModule)
+  },
+
 ];
 
 @NgModule({

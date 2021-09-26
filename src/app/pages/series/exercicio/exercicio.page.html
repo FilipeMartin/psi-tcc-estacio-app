@@ -4,12 +4,25 @@
 
 <ion-content>
   <div class="container">
-    <img [src]="exercicio.caminhoVideo"/>
+    <!-- <img [src]="exercicio.caminhoVideo"/> -->
+    <div class="gif">
+      <img src="https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/supino-reto.gif"/>
+      <span class="help" (click)="openUrl()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </span>
+      <span class="identifier">30</span>
+    </div>
 
     <ul>
       <li *ngFor="let item of list">
-        <ion-icon [name]="item.icon"></ion-icon>
-        <span>{{ item.text }}</span>
+        <span class="title">{{ item.title }}:</span>
+        <span class="text">{{ item.text }}</span>
+      </li>
+      <li>
+        <ion-button color="primary">
+          <ion-icon name="barbell-outline"></ion-icon>
+          <span>Editar Carga</span>
+        </ion-button>
       </li>
     </ul>
   </div>
