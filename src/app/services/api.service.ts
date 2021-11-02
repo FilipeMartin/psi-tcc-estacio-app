@@ -19,13 +19,13 @@ export class ApiService {
 
     async getCargaExercicio(): Promise<CargaExercicio> {
       const aluno = this.authService.getAluno();
-      const append = sanitizeQuery({usuarioId: aluno.id});
+      const append = sanitizeQuery({alunoId: aluno.id});
       return await this.http.get<CargaExercicio>(`carga-exercicio/${append}`).toPromise();
     }
 
     async getAvaliacoes(): Promise<Array<Avaliacao>> {
       const aluno = this.authService.getAluno();
-      const append = sanitizeQuery({usuarioId: aluno.id});
+      const append = sanitizeQuery({alunoId: aluno.id});
       return await this.http.get<Array<Avaliacao>>(`avaliacoes${append}`).toPromise();
     }
 

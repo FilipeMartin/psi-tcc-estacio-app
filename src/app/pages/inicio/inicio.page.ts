@@ -28,8 +28,7 @@ export class InicioPage implements OnInit {
       {text: this.aluno.email, icon: "mail-outline"},
       {text: this.aluno.telefoneCelular, icon: "call-outline"},
       {text: this.aluno.telefoneResidencial, icon: "call-outline"},
-      {text: this.datePipe.transform(this.aluno.dataNascimento, "dd/MM/yyyy"), icon: "hourglass-outline"},
-      {text: "Plano Black", icon: "barbell-outline"}
+      {text: this.datePipe.transform(this.aluno.dataNascimento, "dd/MM/yyyy"), icon: "hourglass-outline"}
     ];
   }
 
