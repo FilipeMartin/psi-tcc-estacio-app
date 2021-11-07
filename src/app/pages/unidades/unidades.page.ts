@@ -55,12 +55,12 @@ export class UnidadesPage implements OnInit {
     });
   }
 
-  loadMap(lat: number = -22.973067, lng: number = -43.413052) {
+  loadMap(lat: number = -22.973067, lng: number = -43.413052, zoom: number = 12) {
     const mapEle: HTMLElement = document.getElementById('map');
     const myLatLng = {lat, lng};
     this.map = new google.maps.Map(mapEle, {
       center: myLatLng,
-      zoom: 12
+      zoom: zoom
     });
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
@@ -87,7 +87,7 @@ export class UnidadesPage implements OnInit {
     if(detail.value) {
       this.buildMarkers(this.unidades.filter(m => m.id == detail.value));
       const position = this.markers[0].position;
-      this.loadMap(position.lat, position.lng);
+      this.loadMap(position.lat, position.lng, 18);
     } else {
       this.buildMarkers(this.unidades);
       this.loadMap();
