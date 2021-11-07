@@ -6,8 +6,8 @@ import { Avaliacao } from '../interfaces/avaliacao';
 import { sanitizeQuery } from '../core/functions';
 import { AuthService } from './auth.service';
 import { Unidade } from '../interfaces/unidade';
-import * as moment from 'moment';
 import { Professor } from '../interfaces/professor';
+import * as moment from 'moment';
 
 
 @Injectable({
@@ -56,16 +56,8 @@ export class ApiService {
       return await this.http.get<Array<Unidade>>(`unidades`).toPromise();
     }
 
-    async getProfessor(): Promise<Professor> {
-      const avaliacao = (await this.getAvaliacoes())[0];
-      if (avaliacao) {
-        if (this.professor == null) {
-          const append = sanitizeQuery({professorId: avaliacao.professorId});
-          this.professor = await this.http.get<Professor>(`professores/${append}`).toPromise();
-        }
-        return this.professor;
-      }
-      return null;
+    getProfessor(): Professor {
+      return this.professor;
     }
 
     async editPeso(data: any) {
@@ -92,6 +84,8 @@ export class ApiService {
         const avaliacao = (await this.getAvaliacoes())[0];
 
         if (avaliacao) {
+          this.professor = avaliacao.professor;
+
           if (moment(avaliacao.dataAvaliacao).add(2, 'M').isBefore(moment())) {
             const nome = aluno.nomeCompleto.split(" ")[0];
             const data = moment(avaliacao.dataAvaliacao).format("DD/MM/YYYY");

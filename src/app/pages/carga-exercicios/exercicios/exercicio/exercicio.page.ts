@@ -33,11 +33,11 @@ export class ExercicioPage implements OnInit {
     const {cargaExercicioId, exercicioId} = this.route.snapshot.params;
 
     this.exercicio = this.service.getExercicio(cargaExercicioId, exercicioId);
+    this.professor = this.service.getProfessor();
     this.buildList();
   }
 
-  async ngOnInit() {
-    this.professor = await this.service.getProfessor();
+  ngOnInit() {
   }
 
   buildList() {

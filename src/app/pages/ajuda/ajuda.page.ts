@@ -11,10 +11,11 @@ export class AjudaPage implements OnInit {
 
   professor: Professor;
 
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService) {
+    this.professor = this.service.getProfessor();
+  }
 
-  async ngOnInit() {
-    this.professor = await this.service.getProfessor();
+  ngOnInit() {
   }
 
   openUrl() {
