@@ -4,13 +4,12 @@
 
 <ion-content>
   <div class="container">
-    <!-- <img [src]="exercicio.caminhoVideo"/> -->
     <div class="gif">
-      <img src="https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/supino-reto.gif"/>
-      <span class="help" (click)="openUrl()">
+      <img [src]="exercicio.caminhoVideo"/>
+      <span class="help" *ngIf="professor" (click)="openUrl()">
         <ion-icon name="help-circle-outline"></ion-icon>
       </span>
-      <span class="identifier">30</span>
+      <!-- <span class="identifier">30</span> -->
     </div>
 
     <ul>
@@ -19,12 +18,11 @@
         <span class="text">{{ item.text }}</span>
       </li>
       <li>
-        <ion-button color="primary">
+        <ion-button color="primary" (click)="editarPeso(exercicio.peso)">
           <ion-icon name="barbell-outline"></ion-icon>
-          <span>Editar Carga</span>
+          <span>Editar Peso</span>
         </ion-button>
       </li>
     </ul>
   </div>
 </ion-content>
-

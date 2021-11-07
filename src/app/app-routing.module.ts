@@ -21,15 +21,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'series',
+    path: 'carga-exercicios',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('./pages/series/series.module').then( m => m.SeriesPageModule)
+    loadChildren: () => import('./pages/carga-exercicios/carga-exercicios.module').then( m => m.CargaExerciciosPageModule)
   },
   {
     path: 'avaliacoes',
     loadChildren: () => import('./pages/avaliacoes/avaliacoes.module').then( m => m.AvaliacoesPageModule)
-  },  {
+  },
+  {
     path: 'unidades',
     loadChildren: () => import('./pages/unidades/unidades.module').then( m => m.UnidadesPageModule)
   },

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Professor } from 'src/app/interfaces/professor';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-ajuda',
@@ -7,19 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjudaPage implements OnInit {
 
-  professor: any = {
-    nome: 'Nome Professor',
-    email: 'professor@gmail.com',
-    telefone: '(21) 99639-6999'
-  };
+  professor: Professor;
 
-  constructor() { }
+  constructor(private service: ApiService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.professor = await this.service.getProfessor();
   }
 
   openUrl() {
-    window.open(`http://api.whatsapp.com/send?1=pt_BR&phone=${this.professor.telefone}`,'_system', 'location=yes');
+    window.open(`http://api.whatsapp.com/send?1=pt_BR&phone=${this.professor.telefoneCelular}`,'_system', 'location=yes');
   }
 
 }

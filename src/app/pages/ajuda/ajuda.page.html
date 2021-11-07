@@ -3,13 +3,12 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
+  <div class="container" *ngIf="professor">
     <img src="assets/avatar.png"/>
-
     <ul>
       <li>
         <ion-icon name="person-circle-outline"></ion-icon>
-        <span>{{ professor.nome }}</span>
+        <span>{{ professor.nomeCompleto }}</span>
       </li>
       <li>
         <ion-icon name="mail-outline"></ion-icon>
@@ -17,7 +16,7 @@
       </li>
       <li>
         <ion-icon name="call-outline"></ion-icon>
-        <span>{{ professor.telefone }}</span>
+        <span>{{ professor.telefoneCelular }}</span>
       </li>
     </ul>
     <ion-button color="primary" (click)="openUrl()">

@@ -36,7 +36,8 @@ export class AvaliacaoPage implements OnInit {
       {title: 'Perna esquerda', value: `${this.avaliacao.pernaEsquerda}cm`},
       {title: 'Panturrilha direita', value: `${this.avaliacao.panturrilhaDireita}cm`},
       {title: 'Panturrilha esquerda', value: `${this.avaliacao.panturrilhaEsquerda}cm`},
-      {title: 'Data da avaliação', value: this.datePipe.transform(this.avaliacao.dataAvaliacao, `dd/MM/yyyy 'às' HH:mm`)}
+      {title: 'Data da avaliação', value: this.datePipe.transform(this.avaliacao.dataAvaliacao, `dd/MM/yyyy 'às' HH:mm`)},
+      {title: 'Professor', value: `${this.avaliacao.professor.nomeCompleto}`}
     ];
   }
 

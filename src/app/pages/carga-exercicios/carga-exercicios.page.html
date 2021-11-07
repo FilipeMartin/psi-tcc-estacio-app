@@ -1,0 +1,21 @@
+<ion-header>
+  <app-header title="Carga de Exercícios"></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="cargaExercicios">
+    <ion-item *ngFor="let cargaExercicio of cargaExercicios" [routerLink]="['/carga-exercicios', cargaExercicio.id]">
+      <div class="container">
+        <img src="assets/halteres.png">
+        <div class="info">
+          <span class="title">{{ cargaExercicio.nomeCargaExercicio }}</span>
+          <ul style="margin: 0; padding: 0; margin-left: 12px">
+            <li class="description" *ngFor="let exercicio of cargaExercicio.exercicios">
+              {{ exercicio.nome }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -22,6 +22,7 @@ export class AvaliacoesPage implements OnInit {
   async ngOnInit() {
     await this.loading();
     this.avaliacoes = await this.service.getAvaliacoes();
+    await this.service.verificarAvaliacao();
     this.load.dismiss();
   }
 

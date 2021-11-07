@@ -1,5 +1,9 @@
+import { Professor } from './professor';
 export interface Avaliacao {
   id: string,
+  alunoId: string,
+  professorId: string,
+  professor: Professor,
   altura: number,
   peso: number,
   imc: number,
@@ -16,6 +20,5 @@ export interface Avaliacao {
   pernaEsquerda: number,
   panturrilhaDireita: number,
   panturrilhaEsquerda: number,
-  dataAvaliacao: string,
-  alunoId: string
+  dataAvaliacao: string
 }

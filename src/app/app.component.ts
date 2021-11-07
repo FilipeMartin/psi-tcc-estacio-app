@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Aluno } from './interfaces/aluno';
 import { AuthService } from './services/auth.service';
+import { ApiService } from 'src/app/services/api.service';
 
 
 interface MenuItem {
@@ -23,22 +24,27 @@ export class AppComponent implements OnDestroy {
 
   menu: Array<MenuItem> = [
     {text: 'Início', icon: 'arrow-redo-outline', path: '/inicio'},
-    {text: 'Exercícios', icon: 'barbell-outline', path: '/series'},
+    {text: 'Carga de Exercícios', icon: 'barbell-outline', path: '/carga-exercicios'},
     {text: 'Avaliações', icon: 'document-text-outline', path: '/avaliacoes'},
     {text: 'Unidades', icon: 'location-outline', path: '/unidades'},
     {text: 'Consultar Professor', icon: 'logo-whatsapp', path: '/ajuda'},
   ];
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private service: ApiService
+  ) {
     this.aluno = this.authService.getAluno();
 
     if(this.aluno) {
       this.showMenu = true;
+      this.service.verificarAvaliacao();
     }
 
     this.loginSubscribe = this.authService.actionLogin.subscribe((aluno: Aluno) => {
       this.aluno = aluno;
       this.showMenu = true;
+      this.service.verificarAvaliacao();
     });
   }
 

@@ -7,7 +7,7 @@
     <ion-item>
       <ion-select placeholder="Todas Unidades" (ionChange)="selected($event)">
         <ion-select-option value="">Todas Unidades</ion-select-option>
-        <ion-select-option [value]="unidade.id" *ngFor="let unidade of unidades">{{ unidade.title }}</ion-select-option>
+        <ion-select-option [value]="unidade.id" *ngFor="let unidade of unidades">{{ unidade.nome }}</ion-select-option>
       </ion-select>
     </ion-item>
     <div id="map"></div>

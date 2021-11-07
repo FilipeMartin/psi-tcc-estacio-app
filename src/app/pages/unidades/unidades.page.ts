@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { Unidade } from 'src/app/interfaces/unidade';
+import { ApiService } from 'src/app/services/api.service';
 
 declare var google;
 
 interface Marker {
-  id: number;
+  id: string;
   position: {
     lat: number,
     lng: number
@@ -18,49 +21,38 @@ interface Marker {
 })
 export class UnidadesPage implements OnInit {
 
-  unidades: Marker[] = [
-    {
-      id: 1,
-      position: {
-        lat: -22.973067,
-        lng: -43.413052,
-      },
-      title: 'Parque Simón Bolivar'
-    },
-    {
-      id: 2,
-      position: {
-        lat: -22.995067,
-        lng: -43.413052,
-      },
-      title: 'Jardín Botánico'
-    },
-    {
-      id: 3,
-      position: {
-        lat: -22.943067,
-        lng: -43.413052,
-      },
-      title: 'Parque la 93'
-    },
-    {
-      id: 4,
-      position: {
-        lat: -22.973067,
-        lng: -43.453052,
-      },
-      title: 'Maloka'
-    },
-  ];
-
+  unidades: Array<Unidade>;
   map = null;
   markers: Marker[];
 
-  constructor() { }
+  load: HTMLIonLoadingElement;
 
-  ngOnInit() {
-    this.markers = this.unidades;
+  constructor(
+    private service: ApiService,
+    private loadingController: LoadingController
+  ) { }
+
+  async ngOnInit() {
+    await this.loading();
+    this.unidades = await this.service.getUnidades();
+    this.load.dismiss();
+
+    this.buildMarkers(this.unidades);
     this.loadMap();
+  }
+
+  buildMarkers(unidades: Array<Unidade>) {
+    this.markers = [];
+    unidades.forEach((u: Unidade) => {
+      this.markers.push({
+        id: u.id,
+        title: u.nome,
+        position: {
+          lat: u.localizacao.coordinates[0],
+          lng: u.localizacao.coordinates[1],
+        }
+      });
+    });
   }
 
   loadMap(lat: number = -22.973067, lng: number = -43.413052) {
@@ -93,12 +85,20 @@ export class UnidadesPage implements OnInit {
 
   selected({detail}) {
     if(detail.value) {
-      this.markers = this.unidades.filter(m => m.id == detail.value);
+      this.buildMarkers(this.unidades.filter(m => m.id == detail.value));
       const position = this.markers[0].position;
       this.loadMap(position.lat, position.lng);
     } else {
-      this.markers = this.unidades;
+      this.buildMarkers(this.unidades);
       this.loadMap();
     }
+  }
+
+  async loading() {
+    this.load = await this.loadingController.create({
+      message: 'Carregando...',
+      duration: 60000
+    });
+    await this.load.present();
   }
 }

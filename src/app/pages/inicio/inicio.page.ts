@@ -20,7 +20,10 @@ export class InicioPage implements OnInit {
   aluno: Aluno;
   profile: Array<Profile>;
 
-  constructor(private authService: AuthService, private datePipe: DatePipe) {
+  constructor(
+    private authService: AuthService,
+    private datePipe: DatePipe
+  ) {
     this.aluno = this.authService.getAluno();
 
     this.profile = [
