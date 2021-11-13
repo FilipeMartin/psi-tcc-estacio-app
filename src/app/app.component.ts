@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
 
   menu: Array<MenuItem> = [
     {text: 'Início', icon: 'arrow-redo-outline', path: '/inicio'},
-    {text: 'Carga de Exercícios', icon: 'barbell-outline', path: '/carga-exercicios'},
+    {text: 'Cargas de Exercícios', icon: 'barbell-outline', path: '/carga-exercicios'},
     {text: 'Avaliações', icon: 'document-text-outline', path: '/avaliacoes'},
     {text: 'Unidades', icon: 'location-outline', path: '/unidades'},
     {text: 'Consultar Professor', icon: 'logo-whatsapp', path: '/ajuda'},
